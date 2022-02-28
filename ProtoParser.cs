@@ -6,14 +6,14 @@ namespace ProtoBuf2LuaAnnotation
     {
         public const string UnusedCommentPattern = @"^( *//).*|/\*(.|[\r\n])*?\*/";
         
-        public const string PackagePattern = @"package(?: | *[\r\n] *)+(\w+)(?: | *[\r\n] *)*;";
+        public const string PackagePattern = @"(?<!//.*)package(?: | *[\r\n] *)+(\w+)(?: | *[\r\n] *)*;";
 
-        public const string EnumBodyPattern = @"enum(?: | *[\r\n] *)+(\w+)(?: | *[\r\n] *)*\{(?:.|[\r\n])*?\}";
-        public const string EnumFieldPattern = @"(\w+)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*([0-9]+)(?: | *[\r\n] *)*; *(?://)*(.*)";
+        public const string EnumBodyPattern = @"(?<!//.*)enum(?: | *[\r\n] *)+(\w+)(?: | *[\r\n] *)*\{(?:.|[\r\n])*?(?<!//.*)\}";
+        public const string EnumFieldPattern = @"(?<!//.*)(\w+)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*([0-9]+)(?: | *[\r\n] *)*; *(?://)*(.*)";
         
-        public const string MessageBodyPattern = @"message(?: | *[\r\n] *)+(\w+)(?: | *[\r\n] *)*\{(?:.|[\r\n])*?\}";
-        public const string MessageFieldPattern = @"(\w+)(?: | *[\r\n] *)+(\w+)(?: | *[\r\n] *)+(\w*)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*[0-9]+(?: | *[\r\n] *)*; *(?://)*(.*)";
-        public const string MessageMapFieldPattern = @"map(?: | *[\r\n] *)*<(?: | *[\r\n] *)*(\w+)(?: | *[\r\n] *)*,(?: | *[\r\n] *)*(\w+)(?: | *[\r\n] *)*>(?: | *[\r\n] *)*(\w+)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*[0-9]+(?: | *[\r\n] *)*; *(?://)*(.*)";
+        public const string MessageBodyPattern = @"(?<!//.*)message(?: | *[\r\n] *)+(\w+)(?: | *[\r\n] *)*\{(?:.|[\r\n])*?(?<!//.*)\}";
+        public const string MessageFieldPattern = @"(?<!//.*)(\w+)(?: | *[\r\n] *)+(\w+)(?: | *[\r\n] *)+(\w*)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*[0-9]+(?: | *[\r\n] *)*; *(?://)*(.*)";
+        public const string MessageMapFieldPattern = @"(?<!//.*)map(?: | *[\r\n] *)*<(?: | *[\r\n] *)*(\w+)(?: | *[\r\n] *)*,(?: | *[\r\n] *)*(\w+)(?: | *[\r\n] *)*>(?: | *[\r\n] *)*(\w+)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*[0-9]+(?: | *[\r\n] *)*; *(?://)*(.*)";
 
         public static ProtoData Parse(string protoContent)
         {
