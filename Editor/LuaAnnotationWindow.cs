@@ -40,10 +40,14 @@ namespace ProtoBuf2LuaAnnotation.Editor
         
         public static void GenLuaAnnotation(string protoDirectory, string luaDirectory, string prefix = "")
         {
-            if (!Directory.Exists(luaDirectory))
-                Directory.CreateDirectory(luaDirectory);
-            foreach (var filePath in Directory.GetFiles(protoDirectory, "*.proto"))
-                File.WriteAllText(Path.Combine(luaDirectory, Path.ChangeExtension(Path.GetFileName(filePath), "lua")), BuildLuaAnnotation(filePath, prefix));
+            foreach (var filePath in Directory.GetFiles(protoDirectory, "*.proto", SearchOption.AllDirectories))
+            {
+                string directory = luaDirectory + Path.GetDirectoryName(filePath).Substring(protoDirectory.Length);
+                if (!Directory.Exists(directory))
+                    Directory.CreateDirectory(directory);
+                File.WriteAllText(Path.Combine(directory, Path.ChangeExtension(Path.GetFileName(filePath), "lua")), BuildLuaAnnotation(filePath, prefix));
+            }
+            AssetDatabase.Refresh();
         }
 
         public static string BuildLuaAnnotation(string protoPath, string prefix = "")
