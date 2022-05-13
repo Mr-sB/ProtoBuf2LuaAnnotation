@@ -137,6 +137,13 @@ namespace ProtoBuf2LuaAnnotation.Editor
                 case ProtoFieldType.Bytes:
                     return "string";
                 default:
+                    //可能会出现package.messageName的字段类型，需要拆解一下
+                    var dotIndex = protoType.IndexOf('.');
+                    if (dotIndex >= 0)
+                    {
+                        package = protoType.Substring(0, dotIndex);
+                        protoType = protoType.Substring(dotIndex + 1);
+                    }
                     return GetCustomFieldType(package, protoType, prefix);
             }
         }
