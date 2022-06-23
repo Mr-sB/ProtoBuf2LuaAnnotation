@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package example;
+
+enum TestEnum {
+  Enum0 = 0;
+  Enum1 = 1;
+  Enum2 = 2;
+  Enum3 = 3;
+  Enum100 = 100;
+}
+
+message TestMessage1 {
+  string str = 1;
+  int32 number1 = 2;
+  float number2 = 3;
+  bool boolean = 4;
+  TestMessage2 message1 = 5;
+  repeated bool booleanArray = 6;
+  map<string, float> map1 = 7;
+  map<int32, TestMessage2> map2 = 8;
+}
+
+message TestMessage2 {
+  string str = 1;
+  int32 number1 = 2;
+  float number2 = 3;
+  bool boolean = 4;
+}
