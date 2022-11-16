@@ -6,8 +6,8 @@ Generate EmmyLua Annotation from ProtoBuf.
 * Choose ProtoBuf folder and LuaAnnotation folder.
 * Click "GenLuaLuaAnnotation" to generate LuaAnnotation scripts to LuaAnnotation folder.
 
-![Window](https://github.com/Mr-sB/ProtoBuf2LuaAnnotation/raw/main/Screenshots/Window.png)
+![Window](Screenshots/Window.png)
 
 # Proto&Lua
 
-![ProtoAndLua](https://github.com/Mr-sB/ProtoBuf2LuaAnnotation/raw/main/Screenshots/ProtoAndLua.png)
+![ProtoAndLua](Screenshots/ProtoAndLua.png)
