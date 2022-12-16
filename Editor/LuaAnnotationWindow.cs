@@ -171,7 +171,7 @@ namespace ProtoBuf2LuaAnnotation.Editor
             //DragDrop
             if (Event.current.type == EventType.DragUpdated && pathRect.Contains(Event.current.mousePosition))
                 DragAndDrop.visualMode = DragAndDropVisualMode.Link;
-            else if (Event.current.type == EventType.DragExited && DragAndDrop.paths != null && DragAndDrop.paths.Length > 0 && pathRect.Contains(Event.current.mousePosition))
+            else if (Event.current.type == EventType.DragPerform && DragAndDrop.paths != null && DragAndDrop.paths.Length > 0 && pathRect.Contains(Event.current.mousePosition))
                 showPath = DragAndDrop.paths[0];
             return showPath;
         }
