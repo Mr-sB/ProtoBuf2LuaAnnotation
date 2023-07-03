@@ -8,8 +8,8 @@ namespace ProtoBuf2LuaAnnotation
         public const string Float = "float";
         public const string Int32 = "int32";
         public const string Int64 = "int64";
-        public const string UIt32 = "uit32";
-        public const string UIt64 = "uit64";
+        public const string UIt32 = "uint32";
+        public const string UIt64 = "uint64";
         public const string SInt32 = "sint32";
         public const string SInt64 = "sint64";
         public const string Fixed32 = "fixed32";
