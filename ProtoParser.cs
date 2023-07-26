@@ -12,7 +12,7 @@ namespace ProtoBuf2LuaAnnotation
         public const string EnumFieldPattern = @"(?<!//.*)(\w+)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*([0-9]+)(?: | *[\r\n] *)*; *(?://)*(.*)";
         
         public const string MessageBodyPattern = @"(?<!//.*)message(?: | *[\r\n] *)+(\w+)(?: | *[\r\n] *)*\{(?:.|[\r\n])*?(?<!//.*)\}";
-        public const string MessageFieldPattern = @"(?<!//.*)(\w+\.*\w*)(?: | *[\r\n] *)+(\w+\.*\w*)(?: | *[\r\n] *)+(\w*)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*[0-9]+(?: | *[\r\n] *)*; *(?://)*(.*)";
+        public const string MessageFieldPattern = @"(?<!//.*)(\w+\.*\w*)(?: | *[\r\n] *)+(\w+\.*\w*)(?: | *[\r\n] *)*(\w*)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*[0-9]+(?: | *[\r\n] *)*; *(?://)*(.*)";
         public const string MessageMapFieldPattern = @"(?<!//.*)map(?: | *[\r\n] *)*<(?: | *[\r\n] *)*(\w+\.*\w*)(?: | *[\r\n] *)*,(?: | *[\r\n] *)*(\w+\.*\w*)(?: | *[\r\n] *)*>(?: | *[\r\n] *)*(\w+)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*[0-9]+(?: | *[\r\n] *)*; *(?://)*(.*)";
 
         public static readonly char[] NewLineChars = new char[] {'\r', '\n'};
