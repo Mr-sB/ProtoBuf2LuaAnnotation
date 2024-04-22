@@ -36,11 +36,11 @@ namespace ProtoBuf2LuaAnnotation
         //isMap true:
         //modifier => keyType
         //type => valueType
-        public List<(bool isMap, string name, string modifier, string type, string comment)> TypeList;
+        public List<(bool isMap, string name, string modifier, string type, int fieldIndex, string comment)> TypeList;
         
         public ProtoMessageData()
         {
-            TypeList = new List<(bool, string, string, string, string)>();
+            TypeList = new List<(bool, string, string, string, int, string)>();
         }
 
         public ProtoMessageData(string name) : this()

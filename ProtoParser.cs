@@ -12,8 +12,8 @@ namespace ProtoBuf2LuaAnnotation
         public const string EnumFieldPattern = @"(?<!//.*)(\w+)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*([0-9]+)(?: | *[\r\n] *)*; *(?://)*(.*)";
         
         public const string MessageBodyPattern = @"(?<!//.*)message(?: | *[\r\n] *)+(\w+)(?: | *[\r\n] *)*\{(?:.|[\r\n])*?(?<!//.*)\}";
-        public const string MessageFieldPattern = @"(?<!//.*)(\w+\.*\w*)(?: | *[\r\n] *)+(\w+\.*\w*)(?: | *[\r\n] *)*(\w*)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*[0-9]+(?: | *[\r\n] *)*; *(?://)*(.*)";
-        public const string MessageMapFieldPattern = @"(?<!//.*)map(?: | *[\r\n] *)*<(?: | *[\r\n] *)*(\w+\.*\w*)(?: | *[\r\n] *)*,(?: | *[\r\n] *)*(\w+\.*\w*)(?: | *[\r\n] *)*>(?: | *[\r\n] *)*(\w+)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*[0-9]+(?: | *[\r\n] *)*; *(?://)*(.*)";
+        public const string MessageFieldPattern = @"(?<!//.*)(\w+\.*\w*)(?: | *[\r\n] *)+(\w+\.*\w*)(?: | *[\r\n] *)*(\w*)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*([0-9]+)(?: | *[\r\n] *)*; *(?://)*(.*)";
+        public const string MessageMapFieldPattern = @"(?<!//.*)map(?: | *[\r\n] *)*<(?: | *[\r\n] *)*(\w+\.*\w*)(?: | *[\r\n] *)*,(?: | *[\r\n] *)*(\w+\.*\w*)(?: | *[\r\n] *)*>(?: | *[\r\n] *)*(\w+)(?: | *[\r\n] *)*=(?: | *[\r\n] *)*([0-9]+)(?: | *[\r\n] *)*; *(?://)*(.*)";
 
         public static readonly char[] NewLineChars = new char[] {'\r', '\n'};
         
@@ -49,7 +49,8 @@ namespace ProtoBuf2LuaAnnotation
                     string fieldName = fieldMatch.Groups[3].Value;
                     string fieldModifier;
                     string fieldType;
-                    string fieldComment = fieldMatch.Groups[4].Value.TrimEnd(NewLineChars);
+                    int fieldIndex = int.Parse(fieldMatch.Groups[4].Value);
+                    string fieldComment = fieldMatch.Groups[5].Value.TrimEnd(NewLineChars);
                     if (!string.IsNullOrEmpty(fieldName))
                     {
                         fieldModifier = fieldMatch.Groups[1].Value;
@@ -61,7 +62,7 @@ namespace ProtoBuf2LuaAnnotation
                         fieldType = fieldMatch.Groups[1].Value;
                         fieldName = fieldMatch.Groups[2].Value;
                     }
-                    protoMessageData.TypeList.Add((false, fieldName, fieldModifier, fieldType, fieldComment));
+                    protoMessageData.TypeList.Add((false, fieldName, fieldModifier, fieldType, fieldIndex, fieldComment));
                 }
 
                 foreach (Match mapFieldMatch in Regex.Matches(bodyMatch.Value, MessageMapFieldPattern))
@@ -69,8 +70,9 @@ namespace ProtoBuf2LuaAnnotation
                     string keyType = mapFieldMatch.Groups[1].Value;
                     string valueType = mapFieldMatch.Groups[2].Value;
                     string fieldName = mapFieldMatch.Groups[3].Value;
-                    string fieldComment = mapFieldMatch.Groups[4].Value.TrimEnd(NewLineChars);
-                    protoMessageData.TypeList.Add((true, fieldName, keyType, valueType, fieldComment));
+                    int fieldIndex = int.Parse(mapFieldMatch.Groups[4].Value);
+                    string fieldComment = mapFieldMatch.Groups[5].Value.TrimEnd(NewLineChars);
+                    protoMessageData.TypeList.Add((true, fieldName, keyType, valueType, fieldIndex, fieldComment));
                 }
             }
             return protoData;
